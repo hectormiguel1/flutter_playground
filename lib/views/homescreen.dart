@@ -42,3 +42,12 @@ class BottomNavBarState extends State<BottomNavBar> {
     );
   }
 }
+
+class MainCategoryView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child:
+    );
+  }
+}
