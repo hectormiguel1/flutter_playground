@@ -58,7 +58,7 @@ class BottomNavBarState extends State<BottomNavBar> {
 class MainCategoryView extends StatelessWidget {
   double fontSizeScale;
   Orientation orientation;
-  double iconSize;
+  double iconSize = 40;
   List<Category> categories = [
     Category("Medical", FontAwesomeIcons.hospitalSymbol, Colors.blue.shade100,
         Colors.blue.shade700, <SubCat>[]),
@@ -85,26 +85,29 @@ class MainCategoryView extends StatelessWidget {
             children: [
               Icon(cat.icon, color: cat.iconColor, size: iconSize),
               SizedBox(height: 10),
-              Text(cat.name)
+              Text(
+                cat.name,
+                textAlign: TextAlign.center,
+              )
             ],
           ),
         )));
   }
 
   Widget _buildGrid() {
-    return GridView.count(
-        crossAxisCount: orientation == Orientation.portrait ? 2 : 5,
-        padding: const EdgeInsets.all(20),
-        children: categories.map((element) {
-          return _buildCatButton(element);
-        }).toList());
+    return Center(
+        child: GridView.count(
+            crossAxisCount: orientation == Orientation.portrait ? 2 : 5,
+            padding: const EdgeInsets.all(20),
+            children: categories.map((element) {
+              return _buildCatButton(element);
+            }).toList()));
   }
 
   @override
   Widget build(BuildContext context) {
     fontSizeScale = MediaQuery.of(context).textScaleFactor;
     orientation = MediaQuery.of(context).orientation;
-    iconSize = fontSizeScale * 50;
     return Center(child: _buildGrid());
   }
 }
