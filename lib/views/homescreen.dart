@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app/data/category.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -44,10 +45,32 @@ class BottomNavBarState extends State<BottomNavBar> {
 }
 
 class MainCategoryView extends StatelessWidget {
+
+  Widget _buildGrid() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
+      itemCount: 5,  
+      itemBuilder: 
+      );
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
       child:
+
+    );
+  }
+}
+
+class CategoryButton {
+  CategoryButton(Category cat) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Icon(cat.),
+        ],
+      ),
     );
   }
 }
