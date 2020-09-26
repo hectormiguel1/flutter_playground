@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:app/data/category.dart';
+import 'package:flutter/rendering.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import '../sizeConfig.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
         drawer: Drawer(
             //build drawer
@@ -11,7 +17,11 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("Categories"),
         ),
-        body: MainCategoryView(),
+        body: Center(
+            child: Container(
+                height: SizeConfig.blockSizeVertical * 90,
+                width: SizeConfig.blockSizeHorizontal * 90,
+                child: MainCategoryView())),
         bottomNavigationBar: BottomNavBar());
   }
 }
@@ -46,43 +56,55 @@ class BottomNavBarState extends State<BottomNavBar> {
 }
 
 class MainCategoryView extends StatelessWidget {
+  double fontSizeScale;
+  Orientation orientation;
+  double iconSize;
   List<Category> categories = [
-    Category("Medical", Icons.local_hospital, Colors.red.shade100,
-        Colors.red.shade700, <SubCat>[]),
-    Category("Surgery", Icons.local_hospital, Colors.blue.shade100,
+    Category("Medical", FontAwesomeIcons.hospitalSymbol, Colors.blue.shade100,
         Colors.blue.shade700, <SubCat>[]),
-    Category("Trauma", Icons.local_hospital, Colors.yellow.shade100,
+    Category("Surgery", Fontisto.surgical_knife, Colors.red.shade100,
+        Colors.red.shade700, <SubCat>[]),
+    Category("Trauma", FontAwesomeIcons.userInjured, Colors.yellow.shade100,
         Colors.yellow.shade700, <SubCat>[]),
-    Category("Toxicology", Icons.local_hospital, Colors.green.shade100,
+    Category("Toxicology", FontAwesomeIcons.biohazard, Colors.green.shade100,
         Colors.green.shade700, <SubCat>[]),
-    Category("Foreign Ingestion", Icons.local_hospital, Colors.purple.shade100,
-        Colors.purple.shade700, <SubCat>[]),
+    Category("Foreign Ingestion", FontAwesomeIcons.flask,
+        Colors.purple.shade100, Colors.purple.shade700, <SubCat>[]),
   ];
 
   Widget _buildCatButton(Category cat) {
-    return SizedBox.expand(
-        child: RaisedButton(
-      onPressed: () => {/* Handle Press */},
-      color: cat.bgColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(cat.icon, color: cat.iconColor), Text(cat.name)],
-      ),
-    ));
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: SizedBox.expand(
+            child: RaisedButton(
+          onPressed: () => {/* Handle Press */},
+          color: cat.bgColor,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(cat.icon, color: cat.iconColor, size: iconSize),
+              SizedBox(height: 10),
+              Text(cat.name)
+            ],
+          ),
+        )));
   }
 
   Widget _buildGrid() {
-    return GridView.builder(
-      padding: const EdgeInsets.all(20),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
-      itemCount: 5,
-      itemBuilder: (context, index) => _buildCatButton(categories[index]),
-    );
+    return GridView.count(
+        crossAxisCount: orientation == Orientation.portrait ? 2 : 5,
+        padding: const EdgeInsets.all(20),
+        children: categories.map((element) {
+          return _buildCatButton(element);
+        }).toList());
   }
 
   @override
   Widget build(BuildContext context) {
+    fontSizeScale = MediaQuery.of(context).textScaleFactor;
+    orientation = MediaQuery.of(context).orientation;
+    iconSize = fontSizeScale * 50;
     return Center(child: _buildGrid());
   }
 }
