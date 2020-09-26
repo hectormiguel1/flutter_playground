@@ -5,14 +5,28 @@ class Category {
   IconData icon;
   Color bgColor;
   Color iconColor;
-  List<SubCat> subCats;
+  List<SubCategory> subCats = new List<SubCategory>();
 
-  Category(this.name, this.icon, this.bgColor, this.iconColor, this.subCats);
+  Category(this.name, this.icon, this.bgColor, this.iconColor,
+      List<String> subCats) {
+    _buildSubCategories(subCats);
+  }
+
+  /// Builds the sub category list, and sorts the list in alphabetical order.
+  void _buildSubCategories(List<String> subCategories) {
+    subCategories.map((e) => {subCats.add(SubCategory(e, this))});
+    subCats.sort();
+  }
 }
 
-class SubCat {
+class SubCategory implements Comparable {
   String name;
   Category parent;
 
-  SubCat(this.name, this.parent);
+  SubCategory(this.name, this.parent);
+
+  @override
+  int compareTo(other) {
+    return other.name.compareTo(this.name);
+  }
 }

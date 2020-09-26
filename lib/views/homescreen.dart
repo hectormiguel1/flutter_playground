@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:app/data/category.dart';
 import 'package:flutter/rendering.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-
 import '../sizeConfig.dart';
+import '../data/mainCategoryConstants.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -59,18 +57,6 @@ class MainCategoryView extends StatelessWidget {
   double fontSizeScale;
   Orientation orientation;
   double iconSize = 40;
-  List<Category> categories = [
-    Category("Medical", FontAwesomeIcons.hospitalSymbol, Colors.blue.shade100,
-        Colors.blue.shade700, <SubCat>[]),
-    Category("Surgery", Fontisto.surgical_knife, Colors.red.shade100,
-        Colors.red.shade700, <SubCat>[]),
-    Category("Trauma", FontAwesomeIcons.userInjured, Colors.yellow.shade100,
-        Colors.yellow.shade700, <SubCat>[]),
-    Category("Toxicology", FontAwesomeIcons.biohazard, Colors.green.shade100,
-        Colors.green.shade700, <SubCat>[]),
-    Category("Foreign Ingestion", FontAwesomeIcons.flask,
-        Colors.purple.shade100, Colors.purple.shade700, <SubCat>[]),
-  ];
 
   Widget _buildCatButton(Category cat) {
     return Padding(
