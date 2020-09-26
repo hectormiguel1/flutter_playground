@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Category {
   String name;
-  Icon icon;
+  IconData icon;
   Color bgColor;
   Color iconColor;
   List<SubCat> subCats;
