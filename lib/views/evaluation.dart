@@ -10,27 +10,25 @@ class EvaluationScreen extends StatefulWidget {
 
 class _EvaluationScreenState extends State<EvaluationScreen> {
   SubCategory subCat;
+  Orientation orientation;
   _EvaluationScreenState(this.subCat);
 
   @override
   Widget build(BuildContext context) {
+    orientation = MediaQuery.of(context).orientation;
     return Scaffold(
+        backgroundColor: subCat.parent.bgColor,
         appBar: AppBar(
           backgroundColor: subCat.parent.iconColor,
           title: Text(subCat.name),
         ),
         body: Padding(
-          padding: EdgeInsets.all(20),
-          child: ListView(children: [
-            SizedBox(height: 10),
+          padding: EdgeInsets.all(15),
+          child: ListView(padding: const EdgeInsets.all(20), children: [
             InputCard(subCat, "Evaluation"),
-            SizedBox(height: 10),
             InputCard(subCat, "Manegement"),
-            SizedBox(height: 10),
             InputCard(subCat, "Medication"),
-            SizedBox(height: 10),
             InputCard(subCat, "Symptoms"),
-            SizedBox(height: 10),
             InputCard(subCat, "References"),
             SizedBox(height: 10),
             SizedBox(
@@ -38,9 +36,12 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
                 child: RaisedButton.icon(
                   icon: Icon(Icons.check, color: Colors.white),
                   color: subCat.parent.iconColor,
-                  label: Text("Submit",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white)),
+                  label: Text(
+                    "Submit",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                    textAlign: TextAlign.left,
+                  ),
                   onPressed: () {/*Handle submit */},
                 )),
           ]),
@@ -56,9 +57,9 @@ class InputCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(0),
+        padding: const EdgeInsets.all(5),
         child: Card(
-            color: subCat.parent.bgColor,
+            elevation: 5,
             child: Center(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +67,7 @@ class InputCard extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 10),
                 SizedBox(
-                    width: 150,
+                    width: EdgeInsetsGeometry.infinity.horizontal,
                     child: Text(
                       cardTitle,
                       style: TextStyle(
@@ -102,7 +103,7 @@ class _TextFieldsState extends State<TextFields> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         child: Form(
           key: _formKey,
           child: TextFormField(

@@ -74,7 +74,7 @@ final List<String> toxicologySubCats = [
   "Marijuana",
   "Alcohols",
 ];
-final List<String> foreignIngestionSubCats = [""];
+final List<String> foreignIngestionSubCats = [];
 
 final List<Category> categories = [
   Category("Medical", FontAwesomeIcons.hospitalSymbol, Colors.blue.shade100,
