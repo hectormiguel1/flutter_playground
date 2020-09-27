@@ -18,13 +18,14 @@ class HomeScreen extends StatelessWidget {
         ),
         body: Center(
             child: Container(
-                height: SizeConfig.blockSizeVertical * 90,
-                width: SizeConfig.blockSizeHorizontal * 90,
+                height: SizeConfig.blockSizeVertical * 99,
+                width: SizeConfig.blockSizeHorizontal * 99,
                 child: MainCategoryView())),
         bottomNavigationBar: BottomNavBar(Theme.of(context).primaryColor));
   }
 }
 
+// ignore: must_be_immutable
 class BottomNavBar extends StatefulWidget {
   Color navBarColor;
   BottomNavBar(this.navBarColor);
@@ -63,6 +64,7 @@ class BottomNavBarState extends State<BottomNavBar> {
   }
 }
 
+// ignore: must_be_immutable
 class MainCategoryView extends StatelessWidget {
   Orientation orientation;
   double iconSize = 40;

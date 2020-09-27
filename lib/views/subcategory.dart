@@ -2,6 +2,7 @@ import 'package:app/data/category.dart';
 import 'package:flutter/material.dart';
 import '../sizeConfig.dart';
 
+// ignore: must_be_immutable
 class SubCategoryView extends StatefulWidget {
   Category category;
   SubCategoryView(this.category);
@@ -21,22 +22,29 @@ class _SubCategoryViewState extends State<SubCategoryView> {
         ),
         body: Center(
             child: Container(
-                height: SizeConfig.blockSizeVertical * 90,
-                width: SizeConfig.blockSizeHorizontal * 90,
+                height: SizeConfig.blockSizeVertical * 95,
+                width: SizeConfig.blockSizeHorizontal * 95,
                 child: MenuItems(category))));
   }
 }
 
-class MenuItems extends StatelessWidget {
-  Orientation orientation;
-  double iconSize = 30;
-  Category category;
+class MenuItems extends StatefulWidget {
+  final Category category;
 
   MenuItems(this.category);
 
+  @override
+  _MenuItemsState createState() => _MenuItemsState();
+}
+
+class _MenuItemsState extends State<MenuItems> {
+  Orientation orientation = Orientation.landscape;
+
+  final double iconSize = 30;
+
   Widget _buildSubCatButton(SubCategory subCat) {
     return Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(5),
         child: SizedBox.expand(
             child: RaisedButton(
                 onPressed: () => {/* Handle move to diagnosis window */},
@@ -64,7 +72,7 @@ class MenuItems extends StatelessWidget {
         child: GridView.count(
             crossAxisCount: orientation == Orientation.portrait ? 3 : 6,
             padding: const EdgeInsets.all(10),
-            children: category.subCats.map((element) {
+            children: widget.category.subCats.map((element) {
               return _buildSubCatButton(element);
             }).toList()));
   }

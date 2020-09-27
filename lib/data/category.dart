@@ -9,7 +9,11 @@ class Category {
 
   Category(this.name, this.icon, this.bgColor, this.iconColor,
       List<String> subCats) {
-    _buildSubCategories(subCats);
+    try {
+      _buildSubCategories(subCats);
+    } on Exception catch (e) {
+      print(e);
+    }
   }
 
   /// Builds the sub category list, and sorts the list in alphabetical order.
@@ -18,7 +22,6 @@ class Category {
       subCats.add(SubCategory(element, this));
     });
     subCats.sort();
-    print(subCats);
   }
 }
 
