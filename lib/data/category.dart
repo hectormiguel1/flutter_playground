@@ -19,7 +19,7 @@ class Category {
   /// Builds the sub category list, and sorts the list in alphabetical order.
   void _buildSubCategories(List<String> subCategories) {
     subCategories.forEach((element) {
-      subCats.add(SubCategory(element, this));
+      subCats.add(SubCategory(element, this, this.icon));
     });
     subCats.sort();
   }
@@ -28,8 +28,9 @@ class Category {
 class SubCategory implements Comparable {
   String name;
   Category parent;
+  IconData icon;
 
-  SubCategory(this.name, this.parent);
+  SubCategory(this.name, this.parent, this.icon);
 
   @override
   int compareTo(other) {

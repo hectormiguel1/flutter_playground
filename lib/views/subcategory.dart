@@ -1,4 +1,5 @@
 import 'package:app/data/category.dart';
+import 'package:app/views/evaluation.dart';
 import 'package:flutter/material.dart';
 import '../sizeConfig.dart';
 
@@ -47,7 +48,12 @@ class _MenuItemsState extends State<MenuItems> {
         padding: const EdgeInsets.all(5),
         child: SizedBox.expand(
             child: RaisedButton(
-                onPressed: () => {/* Handle move to diagnosis window */},
+                onPressed: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EvaluationScreen(subCat)))
+                    },
                 color: subCat.parent.bgColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
