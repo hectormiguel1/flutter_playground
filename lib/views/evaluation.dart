@@ -1,7 +1,7 @@
 import 'package:app/data/category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 
+// ignore: must_be_immutable
 class EvaluationScreen extends StatefulWidget {
   SubCategory subCategory;
   EvaluationScreen(this.subCategory);
@@ -33,11 +33,22 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
             SizedBox(height: 10),
             InputCard(subCat, "References"),
             SizedBox(height: 10),
+            SizedBox(
+                height: 50,
+                child: RaisedButton.icon(
+                  icon: Icon(Icons.check, color: Colors.white),
+                  color: subCat.parent.iconColor,
+                  label: Text("Submit",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
+                  onPressed: () {/*Handle submit */},
+                )),
           ]),
         ));
   }
 }
 
+// ignore: must_be_immutable
 class InputCard extends StatelessWidget {
   SubCategory subCat;
   String cardTitle;
@@ -53,11 +64,17 @@ class InputCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 5),
-                Text(
-                  cardTitle,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                SizedBox(height: 10),
+                SizedBox(
+                    width: 150,
+                    child: Text(
+                      cardTitle,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: subCat.parent.iconColor),
+                      textAlign: TextAlign.center,
+                    )),
                 TextFields()
               ],
             ))));
