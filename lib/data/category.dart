@@ -14,8 +14,11 @@ class Category {
 
   /// Builds the sub category list, and sorts the list in alphabetical order.
   void _buildSubCategories(List<String> subCategories) {
-    subCategories.map((e) => {subCats.add(SubCategory(e, this))});
+    subCategories.forEach((element) {
+      subCats.add(SubCategory(element, this));
+    });
     subCats.sort();
+    print(subCats);
   }
 }
 
@@ -27,6 +30,6 @@ class SubCategory implements Comparable {
 
   @override
   int compareTo(other) {
-    return other.name.compareTo(this.name);
+    return name.compareTo(other.name);
   }
 }

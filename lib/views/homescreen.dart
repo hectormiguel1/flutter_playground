@@ -1,3 +1,4 @@
+import 'package:app/views/subcategory.dart';
 import 'package:flutter/material.dart';
 import 'package:app/data/category.dart';
 import 'package:flutter/rendering.dart';
@@ -54,16 +55,19 @@ class BottomNavBarState extends State<BottomNavBar> {
 }
 
 class MainCategoryView extends StatelessWidget {
-  double fontSizeScale;
   Orientation orientation;
   double iconSize = 40;
+  BuildContext context;
 
   Widget _buildCatButton(Category cat) {
     return Padding(
         padding: const EdgeInsets.all(10),
         child: SizedBox.expand(
             child: RaisedButton(
-          onPressed: () => {/* Handle Press */},
+          onPressed: () => {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SubCategoryView(cat)))
+          },
           color: cat.bgColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,8 +96,8 @@ class MainCategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    fontSizeScale = MediaQuery.of(context).textScaleFactor;
     orientation = MediaQuery.of(context).orientation;
+    this.context = context;
     return Center(child: _buildGrid());
   }
 }
