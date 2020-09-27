@@ -78,13 +78,13 @@ final List<String> foreignIngestionSubCats = [""];
 
 final List<Category> categories = [
   Category("Medical", FontAwesomeIcons.hospitalSymbol, Colors.blue.shade100,
-      Colors.blue.shade700, medicalSubCats),
+      Colors.blue.shade900, medicalSubCats),
   Category("Surgery", Fontisto.surgical_knife, Colors.red.shade100,
-      Colors.red.shade700, surgerySubCats),
+      Colors.red.shade900, surgerySubCats),
   Category("Trauma", FontAwesomeIcons.userInjured, Colors.yellow.shade100,
-      Colors.yellow.shade700, traumaSubCats),
+      Colors.yellow.shade900, traumaSubCats),
   Category("Toxicology", FontAwesomeIcons.biohazard, Colors.green.shade100,
-      Colors.green.shade700, toxicologySubCats),
+      Colors.green.shade900, toxicologySubCats),
   Category("Foreign Ingestion", Entypo.lab_flask, Colors.purple.shade100,
-      Colors.purple.shade700, foreignIngestionSubCats),
+      Colors.purple.shade900, foreignIngestionSubCats),
 ];

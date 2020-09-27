@@ -21,27 +21,36 @@ class HomeScreen extends StatelessWidget {
                 height: SizeConfig.blockSizeVertical * 90,
                 width: SizeConfig.blockSizeHorizontal * 90,
                 child: MainCategoryView())),
-        bottomNavigationBar: BottomNavBar());
+        bottomNavigationBar: BottomNavBar(Theme.of(context).primaryColor));
   }
 }
 
 class BottomNavBar extends StatefulWidget {
-  BottomNavBarState createState() => BottomNavBarState();
+  Color navBarColor;
+  BottomNavBar(this.navBarColor);
+  BottomNavBarState createState() => BottomNavBarState(navBarColor);
 }
 
 class BottomNavBarState extends State<BottomNavBar> {
   int selectedIndex = 0;
+  Color navBarColor;
 
+  BottomNavBarState(this.navBarColor);
   void _onTapped(int index) {
     setState(() {
       selectedIndex = index;
+
+      if (index == 0) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Color(Theme.of(context).primaryColor.value),
+      backgroundColor: navBarColor,
       selectedItemColor: Color(Theme.of(context).accentColor.value),
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),

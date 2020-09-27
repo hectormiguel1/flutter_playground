@@ -2,9 +2,15 @@ import 'package:app/data/category.dart';
 import 'package:flutter/material.dart';
 import '../sizeConfig.dart';
 
-class SubCategoryView extends StatelessWidget {
-  final Category category;
+class SubCategoryView extends StatefulWidget {
+  Category category;
   SubCategoryView(this.category);
+  _SubCategoryViewState createState() => _SubCategoryViewState(category);
+}
+
+class _SubCategoryViewState extends State<SubCategoryView> {
+  Category category;
+  _SubCategoryViewState(this.category);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +48,7 @@ class MenuItems extends StatelessWidget {
                     Icon(subCat.parent.icon,
                         color: subCat.parent.iconColor, size: iconSize),
                     SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
                     Text(
                       subCat.name,
@@ -65,6 +71,7 @@ class MenuItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    orientation = MediaQuery.of(context).orientation;
     return Center(child: _buildGrid());
   }
 }
