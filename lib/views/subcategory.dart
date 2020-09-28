@@ -25,25 +25,18 @@ class _SubCategoryViewState extends State<SubCategoryView> {
             child: Container(
                 height: SizeConfig.blockSizeVertical * 95,
                 width: SizeConfig.blockSizeHorizontal * 95,
-                child: MenuItems(category.subCats))));
+                child: MenuItems(subCats: category.subCats))));
   }
 }
 
 class MenuItems extends StatefulWidget {
-  final List<SubCategory> subCats;
-
-  MenuItems(this.subCats);
-
+  List<SubCategory> subCats;
+  MenuItems({this.subCats});
   @override
-  _MenuItemsState createState() => _MenuItemsState(subCats);
+  _MenuItemsState createState() => _MenuItemsState();
 }
 
 class _MenuItemsState extends State<MenuItems> {
-  Orientation orientation = Orientation.landscape;
-  List<SubCategory> subCats;
-
-  _MenuItemsState(this.subCats);
-
   final double iconSize = 30;
 
   Widget _buildSubCatButton(SubCategory subCat) {
@@ -76,19 +69,21 @@ class _MenuItemsState extends State<MenuItems> {
                 ))));
   }
 
-  Widget _buildGrid() {
+  Widget _buildGrid(int numColumns) {
     return Center(
-        child: GridView.extent(
-            maxCrossAxisExtent: 200,
+        child: GridView.count(
+            crossAxisCount: numColumns,
             padding: const EdgeInsets.all(10),
-            children: subCats.map((element) {
+            children: widget.subCats.map((element) {
               return _buildSubCatButton(element);
             }).toList()));
   }
 
   @override
   Widget build(BuildContext context) {
-    orientation = MediaQuery.of(context).orientation;
-    return Center(child: _buildGrid());
+    return LayoutBuilder(builder: (context, contrains) {
+      double numOfColumns = contrains.maxWidth / 250;
+      return _buildGrid(numOfColumns.floor());
+    });
   }
 }
