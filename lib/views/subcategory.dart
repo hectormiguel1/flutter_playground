@@ -71,8 +71,8 @@ class _MenuItemsState extends State<MenuItems> {
 
   Widget _buildGrid(int numColumns) {
     return Center(
-        child: GridView.count(
-            crossAxisCount: numColumns,
+        child: GridView.extent(
+            maxCrossAxisExtent: 200,
             padding: const EdgeInsets.all(10),
             children: widget.subCats.map((element) {
               return _buildSubCatButton(element);

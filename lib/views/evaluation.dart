@@ -23,20 +23,19 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
           title: Text(subCat.name),
         ),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.all(5),
           child: GridView.extent(
-              maxCrossAxisExtent: 300,
-              mainAxisSpacing: 10,
-              padding: const EdgeInsets.all(20),
+              maxCrossAxisExtent: 200,
+              mainAxisSpacing: 20,
+              padding: const EdgeInsets.all(5),
               children: [
                 InputCard(subCat, "Evaluation"),
                 InputCard(subCat, "Manegement"),
                 InputCard(subCat, "Medication"),
                 InputCard(subCat, "Symptoms"),
                 InputCard(subCat, "References"),
-                SizedBox(height: 10),
-                SizedBox(
-                    height: 50,
+                Padding(
+                    padding: EdgeInsets.all(10),
                     child: RaisedButton.icon(
                       icon: Icon(Icons.check, color: Colors.white),
                       color: subCat.parent.iconColor,
