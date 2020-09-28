@@ -1,6 +1,5 @@
 import 'package:app/data/category.dart';
 import 'package:app/data/mainCategoryConstants.dart';
-import 'package:app/views/evaluation.dart';
 import 'package:app/views/subcategory.dart';
 import 'package:flutter/material.dart';
 
