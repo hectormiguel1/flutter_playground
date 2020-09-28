@@ -1,3 +1,4 @@
+import 'package:app/views/search.dart';
 import 'package:app/views/subcategory.dart';
 import 'package:flutter/material.dart';
 import 'package:app/data/category.dart';
@@ -15,6 +16,15 @@ class HomeScreen extends StatelessWidget {
             ),
         appBar: AppBar(
           title: Text("Categories"),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchScreen()));
+              },
+            ),
+          ],
         ),
         body: Center(
             child: Container(
@@ -97,8 +107,9 @@ class MainCategoryView extends StatelessWidget {
 
   Widget _buildGrid() {
     return Center(
-        child: GridView.count(
-            crossAxisCount: orientation == Orientation.portrait ? 2 : 5,
+        child: GridView.extent(
+            maxCrossAxisExtent: 300,
+            mainAxisSpacing: 20,
             padding: const EdgeInsets.all(20),
             children: categories.map((element) {
               return _buildCatButton(element);

@@ -24,27 +24,31 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
         ),
         body: Padding(
           padding: EdgeInsets.all(15),
-          child: ListView(padding: const EdgeInsets.all(20), children: [
-            InputCard(subCat, "Evaluation"),
-            InputCard(subCat, "Manegement"),
-            InputCard(subCat, "Medication"),
-            InputCard(subCat, "Symptoms"),
-            InputCard(subCat, "References"),
-            SizedBox(height: 10),
-            SizedBox(
-                height: 50,
-                child: RaisedButton.icon(
-                  icon: Icon(Icons.check, color: Colors.white),
-                  color: subCat.parent.iconColor,
-                  label: Text(
-                    "Submit",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                    textAlign: TextAlign.left,
-                  ),
-                  onPressed: () {/*Handle submit */},
-                )),
-          ]),
+          child: GridView.extent(
+              maxCrossAxisExtent: 300,
+              mainAxisSpacing: 10,
+              padding: const EdgeInsets.all(20),
+              children: [
+                InputCard(subCat, "Evaluation"),
+                InputCard(subCat, "Manegement"),
+                InputCard(subCat, "Medication"),
+                InputCard(subCat, "Symptoms"),
+                InputCard(subCat, "References"),
+                SizedBox(height: 10),
+                SizedBox(
+                    height: 50,
+                    child: RaisedButton.icon(
+                      icon: Icon(Icons.check, color: Colors.white),
+                      color: subCat.parent.iconColor,
+                      label: Text(
+                        "Submit",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                        textAlign: TextAlign.left,
+                      ),
+                      onPressed: () {/*Handle submit */},
+                    )),
+              ]),
         ));
   }
 }
@@ -56,29 +60,27 @@ class InputCard extends StatelessWidget {
   InputCard(this.subCat, this.cardTitle);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(5),
-        child: Card(
-            elevation: 5,
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(height: 10),
-                SizedBox(
-                    width: EdgeInsetsGeometry.infinity.horizontal,
-                    child: Text(
-                      cardTitle,
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: subCat.parent.iconColor),
-                      textAlign: TextAlign.center,
-                    )),
-                TextFields()
-              ],
-            ))));
+    return Card(
+        elevation: 5,
+        child: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: 10),
+            SizedBox(
+                width: EdgeInsetsGeometry.infinity.horizontal,
+                child: Text(
+                  cardTitle,
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: subCat.parent.iconColor),
+                  textAlign: TextAlign.center,
+                )),
+            TextFields()
+          ],
+        )));
   }
 }
 
@@ -107,6 +109,7 @@ class _TextFieldsState extends State<TextFields> {
         child: Form(
           key: _formKey,
           child: TextFormField(
+            maxLines: 5,
             decoration: InputDecoration(labelText: "Enter text here..."),
             validator: _validateText,
           ),

@@ -25,21 +25,24 @@ class _SubCategoryViewState extends State<SubCategoryView> {
             child: Container(
                 height: SizeConfig.blockSizeVertical * 95,
                 width: SizeConfig.blockSizeHorizontal * 95,
-                child: MenuItems(category))));
+                child: MenuItems(category.subCats))));
   }
 }
 
 class MenuItems extends StatefulWidget {
-  final Category category;
+  final List<SubCategory> subCats;
 
-  MenuItems(this.category);
+  MenuItems(this.subCats);
 
   @override
-  _MenuItemsState createState() => _MenuItemsState();
+  _MenuItemsState createState() => _MenuItemsState(subCats);
 }
 
 class _MenuItemsState extends State<MenuItems> {
   Orientation orientation = Orientation.landscape;
+  List<SubCategory> subCats;
+
+  _MenuItemsState(this.subCats);
 
   final double iconSize = 30;
 
@@ -75,10 +78,10 @@ class _MenuItemsState extends State<MenuItems> {
 
   Widget _buildGrid() {
     return Center(
-        child: GridView.count(
-            crossAxisCount: orientation == Orientation.portrait ? 3 : 6,
+        child: GridView.extent(
+            maxCrossAxisExtent: 200,
             padding: const EdgeInsets.all(10),
-            children: widget.category.subCats.map((element) {
+            children: subCats.map((element) {
               return _buildSubCatButton(element);
             }).toList()));
   }
