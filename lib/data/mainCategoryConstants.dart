@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'category.dart';
 
 final List<String> medicalSubCats = [
@@ -85,6 +86,6 @@ final List<Category> categories = [
       Colors.deepOrange.shade900, traumaSubCats),
   Category("Toxicology", FontAwesomeIcons.biohazard, Colors.green.shade100,
       Colors.green.shade900, toxicologySubCats),
-  Category("Foreign Ingestion", Entypo.lab_flask, Colors.purple.shade100,
+  Category("Foreign Ingestion", MdiIcons.stomach, Colors.purple.shade100,
       Colors.purple.shade900, foreignIngestionSubCats),
 ];
